@@ -1,0 +1,64 @@
+# Verkefnið FORRIT
+
+# Dæmi um verkefni lögð fyrir notendur í tónlistarveitu
+
+class Tonlistarveita:
+    def __init__(self):
+        self.tonlist = {
+            "Adele": {"song": "Someone Like You", "year": 2011},
+            "Of Monsters and Men": {"song": "I of the Storm", "year": 2015, "genre": "folk-pop", "subgenre": "indie"},
+            "Mugison": {"next_concert": "April 20, 2024"},
+            "Blues": ["Song1", "Song2", "Song3"],
+            "Favorite Band": ["Song4", "Song5", "Song6"]
+        }
+
+    def search_song_by_artist(self, artist):
+        if artist in self.tonlist:
+            return self.tonlist[artist]["song"], self.tonlist[artist]["year"]
+        else:
+            return "Artist not found"
+
+    def search_next_concert_by_artist(self, artist):
+        if artist in self.tonlist:
+            if "next_concert" in self.tonlist[artist]:
+                return self.tonlist[artist]["next_concert"]
+            else:
+                return "No upcoming concert found for this artist"
+        else:
+            return "Artist not found"
+
+    def search_songs_by_genre(self, genre):
+        if genre in self.tonlist:
+            return self.tonlist[genre]
+        else:
+            return "Genre not found"
+
+    def search_favorite_songs(self):
+        return self.tonlist["Favorite Band"]
+
+
+# Sýnidæmi um notendaprófanir í tónlistarveitu
+
+def main():
+    tonlistarveita = Tonlistarveita()
+
+    # Prófanir
+    print("Notendaprófanir í tónlistarveitu:")
+    print("1. Leitaðu að einhverju lagi sem Adele hefur samið og fáðu upplýsingar um ártalið:")
+    print(tonlistarveita.search_song_by_artist("Adele"))
+
+    print("\n2. Skráðu inn lagið 'I of the storm' með Of Monsters and Men. Það var gefið út 2015. Flokkurinn er folk-pop og undirflokkurinn er indie:")
+    print(tonlistarveita.search_song_by_artist("Of Monsters and Men"))
+
+    print("\n3. Leitaðu að hvenær Mugison er næst með tónleika:")
+    print(tonlistarveita.search_next_concert_by_artist("Mugison"))
+
+    print("\n4. Leitaðu að öllum lögum sem flokkast undir Blues:")
+    print(tonlistarveita.search_songs_by_genre("Blues"))
+
+    print("\n5. Leitaðu að uppáhaldshljómsveitinni þinni:")
+    print(tonlistarveita.search_favorite_songs())
+
+
+if __name__ == "__main__":
+    main()
